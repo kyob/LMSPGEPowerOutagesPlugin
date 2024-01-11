@@ -1,0 +1,48 @@
+{block name="extra-panel" append}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <table class="lmsbox" id="lms-ui-welcome-box-pge">
+        <thead>
+            <tr onclick="showOrHide('welcome_pge');">
+                <th class="text-center">
+                    <i class="fas fa-bolt"></i> PGE - wyłącznia dla {$pge_power_outages.area} - ostatnia aktualizacja {$pge_power_outages.last_updated_cache}
+                </th>
+            </tr>
+        </thead>
+        <tbody id="welcome_pge" {if !$pge_power_outages.outages_count > 0}style="display:none;" {/if}>
+            {if $pge_power_outages.outages}
+                <tr>
+                    <td style="padding:1em;">
+                        <table class="lmsbox lms-ui-background-cycle">
+                            <colgroup>
+                                <col style="width: 40%;">
+                                <col style="width: 20%;">
+                                <col style="width: 20%;">
+                                <col style="width: 10%;">
+                                <col style="width: 10%;">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>Obszar</th>
+                                    <th>Data rozpoczęcia</th>
+                                    <th>Data zakończenie</th>
+                                    <th>Godziny</th>
+                                    <th>Stacja</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach $pge_power_outages.outages as $row}
+                                    <tr>
+                                        {foreach $row as $cell}
+                                            <td>{$cell}</td>
+                                        {/foreach}
+                                    </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            {/if}
+        </tbody>
+    </table>
+{/block}
